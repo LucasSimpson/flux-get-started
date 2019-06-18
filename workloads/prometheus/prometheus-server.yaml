@@ -52,7 +52,7 @@ spec:
       ##
       image:
         repository: prom/alertmanager
-        tag: v0.15.3
+        tag: master
         pullPolicy: IfNotPresent
 
       ## alertmanager priorityClassName
@@ -534,7 +534,7 @@ spec:
       ##
       image:
         repository: prom/prometheus
-        tag: v2.9.2
+        tag: master
         pullPolicy: IfNotPresent
 
       ## prometheus server priorityClassName
@@ -811,7 +811,7 @@ spec:
       ##
       image:
         repository: prom/pushgateway
-        tag: v0.6.0
+        tag: master
         pullPolicy: IfNotPresent
 
       ## pushgateway priorityClassName
