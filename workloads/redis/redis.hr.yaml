@@ -1,0 +1,16 @@
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: redis-cache
+  namespace: lucas
+  annotations:
+    flux.weave.works/automated: "true"
+spec:
+  releaseName: redis-cache
+  chart:
+    git: git@github.com:helm/charts
+    path: stable/redis
+    ref: master
+  values:
+    cluster.enabled: false

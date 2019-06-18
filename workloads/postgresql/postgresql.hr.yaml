@@ -2,13 +2,17 @@
 apiVersion: flux.weave.works/v1beta1
 kind: HelmRelease
 metadata:
-  name: redis-cache
+  name: postgresql-db
   namespace: lucas
   annotations:
     flux.weave.works/automated: "true"
 spec:
-  releaseName: redis-cache
+  releaseName: postgresql-db
   chart:
     git: git@github.com:helm/charts
-    path: stable/redis
+    path: stable/postgresql
     ref: master
+  values:
+    postgresqlDatabase: postgresqldb
+    metrics:
+      enable: true
