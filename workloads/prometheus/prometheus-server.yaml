@@ -6,9 +6,8 @@ metadata:
   namespace: lucas
   annotations:
     flux.weave.works/automated: "true"
-    flux.weave.works/tag.chart-image: semver:~4.0
 spec:
-  releaseName: redis
+  releaseName: prometheus
   chart:
     git: git@github.com:helm/charts
     path: stable/prometheus
