@@ -1,0 +1,17 @@
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: influxdb
+  namespace: lucas
+  annotations:
+    flux.weave.works/automated: "true"
+spec:
+  releaseName: influxdb
+  chart:
+    git: git@github.com:helm/charts
+    path: stable/postgresql
+    ref: master
+  values:
+    persistence:
+      enable: true
