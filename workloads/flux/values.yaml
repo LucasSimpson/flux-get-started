@@ -1,6 +1,6 @@
 git:
   url: git@github.com:lucassimpson/flux-get-started
-  path: cluster,workloads
+  path: workloads
 
 image:
   repository: weaveworks/flux
