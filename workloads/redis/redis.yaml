@@ -2,13 +2,13 @@
 apiVersion: flux.weave.works/v1beta1
 kind: HelmRelease
 metadata:
-  name: prometheus
+  name: redis
   namespace: lucas
   annotations:
     flux.weave.works/automated: "true"
 spec:
-  releaseName: prometheus
+  releaseName: redis
   chart:
     git: git@github.com:helm/charts
-    path: stable/prometheus
+    path: stable/redis
     ref: master
