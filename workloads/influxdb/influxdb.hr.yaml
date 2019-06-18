@@ -10,7 +10,7 @@ spec:
   releaseName: influxdb
   chart:
     git: git@github.com:helm/charts
-    path: stable/postgresql
+    path: stable/influxdb
     ref: master
   values:
     persistence:
