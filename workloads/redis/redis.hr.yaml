@@ -15,4 +15,9 @@ spec:
   values:
     cluster:
       enabled: false
+    metrics:
+      enabled: true
+    master:
+      livenessProbe:
+        initialDelaySeconds: 60
 
