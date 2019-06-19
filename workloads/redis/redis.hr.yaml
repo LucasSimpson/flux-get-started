@@ -13,4 +13,6 @@ spec:
     path: stable/redis
     ref: master
   values:
-    cluster.enabled: false
+    cluster:
+      enabled: false
+
