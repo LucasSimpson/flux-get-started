@@ -20,4 +20,6 @@ spec:
     master:
       livenessProbe:
         initialDelaySeconds: 60
+      persistence:
+        enabled: false
 
