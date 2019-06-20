@@ -1,3 +1,4 @@
+---
 # --- GLOBAL CONFIG --- 
 apiVersion: v1
 kind: ConfigMap
@@ -42,8 +43,6 @@ spec:
   - protocol: TCP
     port: 80
     targetPort: 8000
-
-
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -66,7 +65,7 @@ spec:
     spec:
       containers:
       - name: lucassimpson-web
-        image: lucassimpsondocker/main:lucassimpson-0.0.19
+        image: lucassimpsondocker/main:lucassimpson-0.0.20
         ports:
         - containerPort: 8000
         envFrom:
@@ -101,7 +100,6 @@ spec:
   - protocol: TCP
     port: 80
     targetPort: 8000
-
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -124,11 +122,10 @@ spec:
     spec:
       containers:
       - name: lucassimpson-celery
-        image: lucassimpsondocker/main:lucassimpson-0.0.19
+        image: lucassimpsondocker/main:lucassimpson-0.0.20
         command: ["celery"]
-        args: [
-          "-A", "celery_config", "worker", "--loglevel=info", "--concurrency=2", "-E", "-B"
-        ]
+        args: ["-A", "celery_config", "worker", "--loglevel=info", "--concurrency=2",
+          "-E", "-B"]
         ports:
         - containerPort: 8000
         envFrom:
@@ -164,7 +161,6 @@ spec:
   - protocol: TCP
     port: 80
     targetPort: 9000
-
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -187,11 +183,9 @@ spec:
     spec:
       containers:
       - name: lucassimpson-prices
-        image: lucassimpsondocker/main:lucassimpson-0.0.19
+        image: lucassimpsondocker/main:lucassimpson-0.0.20
         command: ["python"]
-        args: [
-          "manage.py", "monitor"
-        ]
+        args: ["manage.py", "monitor"]
         ports:
         - containerPort: 9000
         envFrom:
@@ -227,7 +221,6 @@ spec:
   - protocol: TCP
     port: 80
     targetPort: 9000
-
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -250,11 +243,9 @@ spec:
     spec:
       containers:
       - name: lucassimpson-order-book
-        image: lucassimpsondocker/main:lucassimpson-0.0.19
+        image: lucassimpsondocker/main:lucassimpson-0.0.20
         command: ["python"]
-        args: [
-          "manage.py", "m_order_book"
-        ]
+        args: ["manage.py", "m_order_book"]
         ports:
         - containerPort: 9000
         envFrom:
@@ -291,7 +282,6 @@ spec:
   - protocol: TCP
     port: 80
     targetPort: 13337
-
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -314,11 +304,10 @@ spec:
     spec:
       containers:
       - name: lucassimpson-flower
-        image: lucassimpsondocker/main:lucassimpson-0.0.19
+        image: lucassimpsondocker/main:lucassimpson-0.0.20
         command: ["celery"]
-        args: [
-          "-A", "celery_config", "flower", "--port=13337", "--basic_auth=lucas:hodlbois420", "--inspect_timeout=50000"
-        ]
+        args: ["-A", "celery_config", "flower", "--port=13337", "--basic_auth=lucas:hodlbois420",
+          "--inspect_timeout=50000"]
         ports:
         - containerPort: 13337
         envFrom:
