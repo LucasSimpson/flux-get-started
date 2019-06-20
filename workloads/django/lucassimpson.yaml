@@ -66,12 +66,18 @@ spec:
     spec:
       containers:
       - name: lucassimpson-web
-        image: lucassimpsondocker/main:lucassimpson-0.0.19
+        image: lucassimpsondocker/main:lucassimpson-0.0.20
         ports:
         - containerPort: 8000
         envFrom:
         - configMapRef:
             name: lucassimpson
+        env:
+          - name: REDIS_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: redis-cache
+                key: redis-password
         resources:
           requests:
             memory: "256Mi"
@@ -124,7 +130,7 @@ spec:
     spec:
       containers:
       - name: lucassimpson-celery
-        image: lucassimpsondocker/main:lucassimpson-0.0.19
+        image: lucassimpsondocker/main:lucassimpson-0.0.20
         command: ["celery"]
         args: [
           "-A", "celery_config", "worker", "--loglevel=info", "--concurrency=2", "-E", "-B"
@@ -187,7 +193,7 @@ spec:
     spec:
       containers:
       - name: lucassimpson-prices
-        image: lucassimpsondocker/main:lucassimpson-0.0.19
+        image: lucassimpsondocker/main:lucassimpson-0.0.20
         command: ["python"]
         args: [
           "manage.py", "monitor"
@@ -250,7 +256,7 @@ spec:
     spec:
       containers:
       - name: lucassimpson-order-book
-        image: lucassimpsondocker/main:lucassimpson-0.0.19
+        image: lucassimpsondocker/main:lucassimpson-0.0.20
         command: ["python"]
         args: [
           "manage.py", "m_order_book"
@@ -314,7 +320,7 @@ spec:
     spec:
       containers:
       - name: lucassimpson-flower
-        image: lucassimpsondocker/main:lucassimpson-0.0.19
+        image: lucassimpsondocker/main:lucassimpson-0.0.20
         command: ["celery"]
         args: [
           "-A", "celery_config", "flower", "--port=13337", "--basic_auth=lucas:hodlbois420", "--inspect_timeout=50000"
